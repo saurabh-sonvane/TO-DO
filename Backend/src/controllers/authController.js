@@ -105,7 +105,7 @@ const oauthCallback = async (req, res) => {
     });
 
     // Pass role so frontend can redirect correctly (admin → /admin, user → /dashboard)
-    const clientUrl = process.env.CLIENT_URL || 'http://localhost:3000';
+    const clientUrl = process.env.CLIENT_URL || 'http://localhost:5173';
     const params = new URLSearchParams({
       accessToken,
       refreshToken,
@@ -114,7 +114,7 @@ const oauthCallback = async (req, res) => {
     res.redirect(`${clientUrl}/oauth-success?${params.toString()}`);
   } catch (err) {
     logger.error('OAuth callback error', { error: err.message });
-    const clientUrl = process.env.CLIENT_URL || 'http://localhost:3000';
+    const clientUrl = process.env.CLIENT_URL || 'http://localhost:5173';
     res.redirect(`${clientUrl}/oauth-error`);
   }
 };
