@@ -1,10 +1,8 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../../context/AuthContext';
 
 export default function OAuthSuccess() {
   const navigate = useNavigate();
-  const { setTokens } = useAuth(); // you may need to expose this
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -15,7 +13,7 @@ export default function OAuthSuccess() {
     if (accessToken && refreshToken) {
       localStorage.setItem('accessToken', accessToken);
       localStorage.setItem('refreshToken', refreshToken);
-      // redirect based on role
+
       if (role === 'admin') {
         navigate('/admin/dashboard', { replace: true });
       } else {
@@ -24,7 +22,7 @@ export default function OAuthSuccess() {
     } else {
       navigate('/login', { replace: true });
     }
-  }, []);
+  }, [navigate]);
 
   return (
     <div className="flex items-center justify-center min-h-screen">
