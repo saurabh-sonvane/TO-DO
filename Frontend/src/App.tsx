@@ -14,6 +14,7 @@ import AdminUsers from '@/pages/admin/Users';
 import AdminTasks from '@/pages/admin/Tasks';
 import AdminLogs from '@/pages/admin/Logs';
 import { ProtectedRoute } from '@/components/ProtectedRoute';
+import OAuthSuccess from './pages/auth/OAuthSuccess';
 
 function PublicRoute({ children }: { children: React.ReactNode }) {
   const { user, isLoading } = useAuth();
@@ -57,6 +58,8 @@ function AppRoutes() {
           </PublicRoute>
         }
       />
+
+      <Route path="/oauth-success" element={ <PublicRoute><OAuthSuccess /></PublicRoute>} />
 
       {/* Protected user routes */}
       <Route
